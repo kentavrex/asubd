@@ -1,6 +1,6 @@
 DO $$
 DECLARE
-    schema_name TEXT := 's335100'; -- измените на нужную схему
+    schema_name TEXT := 's335100';
     not_null_count INTEGER := 0;
     r RECORD;
 BEGIN
@@ -13,11 +13,9 @@ BEGIN
             EXECUTE format('ALTER TABLE %I.%I ALTER COLUMN %I DROP NOT NULL', schema_name, r.table_name, r.column_name);
             not_null_count := not_null_count + 1;
         EXCEPTION WHEN others THEN
-            -- Игнорировать ошибки при попытке удалить NOT NULL из столбцов, входящих в первичные ключи
             CONTINUE;
         END;
     END LOOP;
 
-    -- Вывод информации о количестве отключённых ограничений
     RAISE NOTICE 'Схема: %, Ограничений целостности типа NOT NULL отключено: %', schema_name, not_null_count;
 END $$;
