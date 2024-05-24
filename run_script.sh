@@ -1,1 +1,2 @@
-psql -U username -d dbname -f disable_not_null.sql
+#!/bin/bash
+psql -h pg -d studs -f ~/asubd/disable_not_null.sql 2>&1
