@@ -1,6 +1,6 @@
 DO $$
 DECLARE
-    schema_name TEXT := 's100000';
+    schema_name TEXT := 's335100';
     not_null_count INTEGER := 0;
     r RECORD;
 BEGIN
